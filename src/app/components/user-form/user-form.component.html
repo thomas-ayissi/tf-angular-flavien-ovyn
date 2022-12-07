@@ -1,0 +1,7 @@
+<form (ngSubmit)="handleSubmit()">
+    <form-input label="Username" type="text" [(value)]="Form.username"></form-input>
+    <form-input label="Password" type="password" [(value)]="Form.password"></form-input>
+    <address-form [(value)]="Form.address"></address-form>
+    <button *ngIf="!isEdit" type="submit">S'inscire</button>
+    <button *ngIf="isEdit" type="submit">Modifier</button>
+</form>

@@ -1,8 +1,10 @@
-<form>
-    <form-input label="Username" type="text" [(value)]="form.username">
-    </form-input>
-    <form-input label="Password" type="password" [(value)]="form.password"></form-input>
-    <form-input label="Address" type="text" [(value)]="form.address"></form-input>
-</form>
-
-{{ form |json }}
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <user-form (newUser)="handleNewUser($event)" (updateUser)="handleUpdateUser($event)"></user-form>
+        </div>
+        <div class="col s6">
+            <user-list type="admin" (edit)="handleEditUser($event)"></user-list> <!-- GET BY -->
+        </div>
+    </div>
+</div>

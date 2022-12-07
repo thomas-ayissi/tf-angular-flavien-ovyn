@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @Component({
     selector: 'app-root',
@@ -6,12 +8,34 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    @ViewChild(UserListComponent)
+    private list: UserListComponent | null = null;
+
+    @ViewChild(UserFormComponent)
+    private form: UserFormComponent | null = null;
+
+    private index: number = -1;
+
     title = 'tf2022dotnetsecu';
 
-    form = { username: "Flavian", password: "Ovyn", address: "Rue du trou du cul, 42" }
+    handleNewUser(newUser: any) {
+        this.list?.addUser(newUser);
+    }
 
-    fieldUpdate(field: any) {
-        console.log(field);
-        this.form = { ...this.form, ...field };
+    handleRemove() {
+        // this.list?.removeUser({ username: 'Flavian' })
+    }
+
+    handleEditUser(u: { user: any, index: number }) {
+        if (this.form) {
+            this.form.Form = u.user;
+            this.index = u.index;
+            this.form.isEdit = true;
+        }
+    }
+
+    handleUpdateUser(u: any) {
+        this.list?.updateUser(this.index, u);
+        console.log(u);
     }
 }

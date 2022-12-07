@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'form-input',
@@ -10,7 +10,7 @@ export class FormInputComponent implements OnInit {
     valueChangeEvent = new EventEmitter<any>();
 
     private _label: string = "";
-    private _type: "text" | "password" = "text";
+    private _type: "text" | "password" | "number" = "text";
     private _value: any | null;
 
     @Input("label")
@@ -18,8 +18,8 @@ export class FormInputComponent implements OnInit {
     get Label(): string { return this._label; }
 
     @Input("type")
-    set Type(v: "text" | "password") { this._type = v; }
-    get Type(): "text" | "password" { return this._type; }
+    set Type(v: "text" | "password" | "number") { this._type = v; }
+    get Type(): "text" | "password" | "number" { return this._type; }
 
     @Input("value")
     set Value(v: any) {

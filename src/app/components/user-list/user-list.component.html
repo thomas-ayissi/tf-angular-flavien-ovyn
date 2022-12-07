@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Address</th>
+            <th *ngIf="_type == 'admin'">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of Users; let i=index" (click)="editUser(user, i)">
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.address.rue }}</td>
+            <td *ngIf="_type == 'admin'">
+                <button (click)="removeUser(user)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
